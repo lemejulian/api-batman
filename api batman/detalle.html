@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Personaje</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="card" id="character-card">
+        <img id="character-image" src="" alt="">
+        <h1 id="character-name"></h1>
+        <p id="character-description"></p>
+    </div>
+
+    <button onclick="window.location.href='index.html'" style="margin-left: 40px; padding: 30px; background-color: yellow; color:black; border: none; border-radius: 10px;">Volver a la lista de personajes</button>
+
+    <script>
+        // Función para obtener los parámetros de la URL
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Función para cargar los detalles del personaje
+        async function loadCharacterDetails() {
+            const nombre = getQueryParameter('nombre');
+            if (!nombre) return;
+
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                const personaje = data.personajes.find(p => p.nombre === nombre);
+
+                if (personaje) {
+                    document.getElementById('character-name').textContent = personaje.nombre;
+                    document.getElementById('character-image').src = personaje.imagen;
+                    document.getElementById('character-description').textContent = personaje.descripcion;
+                }
+            } catch (error) {
+                console.error('Error al cargar los detalles:', error);
+            }
+        }
+
+        // Cargar los detalles al inicio
+        loadCharacterDetails();
+    </script>
+
+ 
+</body>
+</html>

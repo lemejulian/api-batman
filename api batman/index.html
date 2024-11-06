@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personajes de Batman</title>
+    <link rel="stylesheet" href="styless.css">
+</head>
+<body>
+
+    <div class="search-bar">
+        <input type="text" id="search" placeholder="Buscar personajes..." onkeyup="filterCards()">
+    </div>
+    
+    <div class="card-container" id="card-container"></div>
+    
+    <script src="script.js"></script>
+    
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close" id="close">&times;</span>
+            <h1 id="modal-title"></h1>
+        </div>
+    </div>
+    
+
+</body>
+</html>
